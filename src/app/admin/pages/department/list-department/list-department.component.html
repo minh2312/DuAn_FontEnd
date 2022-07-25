@@ -1,0 +1,182 @@
+<div class="content-header">
+    <div class="history">
+        <a (click)="clickHistory()"  data-toggle="modal" data-target=".bd-example-modal-lg"><h4 style="float:right;cursor: pointer;">Lịch Sử Đã Xóa</h4></a>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="title">
+                    <h2>Quản Lý Phòng Ban</h2>
+                </div>
+            </div>
+            <div class="col-md-6">
+              
+            </div>
+        </div>
+
+            <div class="boLocs" style="padding: 20px 0px 20p;">
+                <div class="row">
+                    <div class="col-md-3">
+                        <a style="margin: 5px 0px 5px 0px;" routerLink="/admin/add-department" routerLinkActive="router-link-active" class="btn btn-success">Add</a><br>
+                        <a style="margin: 5px 0px 5px 0px;" class="btn btn-danger" (click)="deleteDep()"><i class="fas fa-trash"></i>Remove</a>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-6">
+                            </div>
+                            <div class="col-md-6">
+                                <span>Show</span>
+                                <select (change)="showItem($event)">
+                                    <option>5</option>
+                                    <option>10</option>
+                                    <option>25</option>
+                                    <option>50</option>
+                                </select>
+                                <span style="padding-left: 5px;">Item</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <form action="">
+                            <div class="search-hero">
+                                <input class="form-control" type="text" name="search" [(ngModel)]="nameSearch"
+                                    (ngModelChange)="Search()" placeholder=" Seach Phòng Ban">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered table-hover ">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="selectall" (change)="deleteAll($event)"/></th>
+                                <th>STT</th>
+                                <th (click)="sort('departmentCode')">Mã Phòng Ban <i class="fa fa-sort"></i></th>
+                                <th (click)="sort('nameDepartment')">Name Phòng Ban <i class="fa fa-sort"></i></th>
+                                <th (click)="sort('updateDate')">Ngày Cập Nhấp <i class="fa fa-sort"></i></th>
+                                <th>Chức Năng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="text-center"
+                                *ngFor="let i of data | paginate: { itemsPerPage: itemPage, currentPage: page, totalItems : totalLength } ;let x = index ">
+                                <td><input type="checkbox" class="selectedId" name="selectedId" value="{{i.id}}" (change)="checkDelete($event)" /></td>
+                                <td>{{x+1}}</td>
+                                <td>{{i.departmentCode}}</td>
+                                <td>{{i.nameDepartment}}</td>
+                                <td>{{i.updateDate | date :'dd-MM-yyyy'}}</td>
+                                <td class="icon_chucNang">
+                                    <a (click)="remove(i)"><i class="fas fa-trash"></i></a>
+                                    <a (click)="formUpdate(i.id)" data-toggle="modal" data-target=".bd-example-modal-sm"><i class="fas fa-edit"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination-controls (pageChange)="page = $event" ></pagination-controls>
+                </div>
+            </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+<!-- Form Cập nhập -->
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="padding: 50px;margin-top:25%">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2>Cập Nhập Phòng Ban</h2>
+                        <form [formGroup]="infoUpdate" (ngSubmit)="onSubmitUpdate()">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Mã Phòng Ban</label>
+                                <input type="text" class="form-control" formControlName="departmentCode">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Tên phòng Ban</label>
+                                <input type="text" class="form-control" formControlName="nameDepartment">
+
+                            </div>
+
+
+                            <!-- <div class="radio">
+                                <label>
+                                    <input type="radio" formControlName="status" id="" value="true" checked>
+                                    <b>Hiện</b>
+                                </label>
+                            </div>
+
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" formControlName="status" id="" value="false">
+                                    <b>Ẩn</b>
+                                </label>
+                            </div> -->
+
+
+                            <button type="submit" class="btn btn-primary">Cập nhập</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Form history -->
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="container">
+            <h3>Lịch Sử Đã Xóa</h3>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered table-hover ">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="selectall" /></th>
+                                <th>STT</th>
+                                <th (click)="sort('departmentCode')">Mã Phòng Ban <i class="fa fa-sort"></i></th>
+                                <th (click)="sort('nameDepartment')">Name Phòng Ban <i class="fa fa-sort"></i></th>
+                                <th (click)="sort('updateDate')">Ngày Cập Nhấp <i class="fa fa-sort"></i></th>
+                                <th>Chức Năng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="text-center"
+                                *ngFor="let i of lichSu | paginate: { itemsPerPage: itemPageHistory, currentPage: pageHistory, totalItems : totalLength }  ;let x = index ">
+                                <td><input type="checkbox" class="selectedId" name="selectedId" value="{{i.id}}"  /></td>
+                                <td>{{x+1}}</td>
+                                <td>{{i.departmentCode}}</td>
+                                <td>{{i.nameDepartment}}</td>
+                                <td>{{i.updateDate | date :'dd-MM-yyyy'}}</td>
+                                <td class="icon_chucNang">
+                                    <a (click)="removeInDataBase(i.id)"><i class="fas fa-trash"></i></a>
+                                    <a (click)="khoiPhuc(i)"><h4>Khôi Phục</h4></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination-controls (pageChange)="pageHistory = $event"></pagination-controls> 
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+

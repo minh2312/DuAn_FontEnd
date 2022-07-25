@@ -1,0 +1,275 @@
+<div class="content-header">
+    <div class="container">
+        <div class="col-md-12">
+            <h2>Thêm Mới Nhân Viên</h2>
+            <form [formGroup]="info" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Ảnh Nhân Viên</label>
+                        <div>
+                            <img id="img-preview"
+                                src="https://ami-sni.com/wp-content/themes/consultix/images/no-image-found-360x250.png"
+                                width="250px" style="    border-radius: 50%;width: 250px;height: 250px;" />
+                            <div>
+                                <input type="file" accept="image/*" formControlName="image" onchange="readURL(this)"
+                                    (change)="uploadFile($event)" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Mã Nhân Viên</label>
+                            <input type="text" class="form-control" formControlName="codeEmployee"
+                                placeholder="Nhập Mã Nhân Viên">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tên Nhân Viên</label>
+                            <input type="text" class="form-control" formControlName="nameEmployee"
+                                placeholder="Nhâp Tên Nhân Viên">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email</label>
+                            <input type="text" class="form-control" formControlName="email" placeholder="Nhập Email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Số Điện Thoại</label>
+                            <input type="text" class="form-control" formControlName="phone"
+                                placeholder="Nhập Số Điện Thoại">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Địa Chỉ</label>
+                            <input type="text" class="form-control" formControlName="address"
+                                placeholder="Nhập Địa Chỉ">
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Dân Tộc</label>
+                            <input type="text" class="form-control" formControlName="ethnic" placeholder="Dân Tộc">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Giới Tính</label>
+                            <div class="gender">
+                                <label>
+                                    <input type="radio" formControlName="gender" value="0" checked>
+                                    <b>Nam</b>
+                                </label>
+
+                                <label>
+                                    <input type="radio" formControlName="gender" value="1">
+                                    <b>Nữ</b>
+                                </label>
+
+                                <label>
+                                    <input type="radio" formControlName="gender" value="2">
+                                    <b>Khác</b>
+                                </label>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Ngày Sinh</label>
+                            <input type="date" class="form-control" formControlName="birthday">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Trạng Thái</label>
+                            <div class="gender">
+                                <label>
+                                    <input type="radio" formControlName="status" value="0" checked>
+                                    <b>Hiện</b>
+                                </label>
+
+                                <label>
+                                    <input type="radio" formControlName="status" value="1">
+                                    <b>Ẩn</b>
+                                </label>
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Phòng Ban</label>
+                            <fieldset formGroupName="dep">
+                                <select formControlName="id" id="input" class="form-control">
+                                    <option value="null">-----Chọn Phòng Ban-----</option>
+                                    <option *ngFor="let i of listDepartment" [value]="i.id">{{i.nameDepartment}}
+                                    </option>
+                                </select>
+                            </fieldset>
+                        </div>
+
+                        <div class="form-group">
+                            <fieldset formGroupName="level">
+                                <label for="exampleInputEmail1">Cấp Bậc</label>
+                                <select formControlName="id" id="idLevel" class="form-control">
+                                    <option *ngFor="let i of listLevel" value="{{i.id}}">
+                                        {{i.name}}
+                                    </option>
+                                </select>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- <div class="content-header">
+    <div class="container">
+        <div class="col-md-12">
+            <h2>Thêm Mới Nhân Viên</h2>
+            <form #f="ngForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Ảnh Nhân Viên</label>
+                        <div>
+                            <img id="img-preview" src="https://ami-sni.com/wp-content/themes/consultix/images/no-image-found-360x250.png" width="250px" style="    border-radius: 50%;width: 250px;height: 250px;"/>
+                        <div>
+                            <input type="file" accept="image/*"  [(ngModel)]="form.image" #image="ngModel" onchange="readURL(this)" (change)="uploadFile($event)"/>
+                        </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <mat-form-field style="width: 350px" appearance="outline">
+                                <mat-label>Mã Nhân Viên (*): </mat-label>
+                                <input matInput maxlength="10" name="codeEmployee" [(ngModel)]="form.codeEmployee" #codeEmployee="ngModel" required>
+                                <mat-hint align="end">{{codeEmployee.value?.length || 0}}/10</mat-hint>
+                                <mat-error *ngIf="codeEmployee.hasError('required')">Mã nhân viên không được để rỗng</mat-error>
+                            </mat-form-field><br>
+                        </div>
+
+                        <mat-form-field style="width: 350px" appearance="outline">
+                            <mat-label>Tên Nhân Viên (*): </mat-label>
+                            <input matInput maxlength="150" name="nameEmployee" [(ngModel)]="form.nameEmployee" #nameEmployee="ngModel" required>
+                            <mat-hint align="end">{{nameEmployee.value?.length || 0}}/150</mat-hint>
+                            <mat-error *ngIf="codeEmployee.hasError('required')">Tên nhân viên không được để rỗng</mat-error>
+                        </mat-form-field><br>
+        
+                        <div class="form-group">
+                            <mat-form-field style="width: 350px" appearance="outline">
+                                <mat-label>Email (*): </mat-label>
+                                <input matInput placeholder="pat@example.com" [(ngModel)]="form.email" [formControl]="email" name="email" required>
+                                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                            </mat-form-field><br>
+                        </div>
+
+                        <div class="form-group">
+                            <mat-form-field style="width: 350px" appearance="outline">
+                                <mat-label>Số Điện Thoại (*): </mat-label>
+                                <input matInput maxlength="20" name="phone" [(ngModel)]="form.phone" #phone="ngModel" required>
+                                <mat-hint align="end">{{phone.value?.length || 0}}/20</mat-hint>
+                                <mat-error *ngIf="phone.hasError('required')">SDT không được để rỗng</mat-error>
+                            </mat-form-field><br>
+                        </div>
+                        <div class="form-group">
+                            <mat-form-field style="width: 350px" appearance="outline">
+                                <mat-label>Địa Chỉ (*): </mat-label>
+                                <input matInput maxlength="20" name="address" [(ngModel)]="form.address" #address="ngModel" required>
+                                <mat-hint align="end">{{address.value?.length || 0}}/20</mat-hint>
+                                <mat-error *ngIf="address.hasError('required')">SDT không được để rỗng</mat-error>
+                            </mat-form-field><br>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                            <mat-form-field style="width: 350px" appearance="outline">
+                                <mat-label>Dân Tộc (*): </mat-label>
+                                <input matInput maxlength="20" name="ethnic" [(ngModel)]="form.ethnic" #ethnic="ngModel" required>
+                                <mat-hint align="end">{{ethnic.value?.length || 0}}/20</mat-hint>
+                                <mat-error *ngIf="ethnic.hasError('required')">SDT không được để rỗng</mat-error>
+                            </mat-form-field><br>
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Giới Tính</label>
+                                <div class="gender">
+                                    <label>
+                                        <input type="radio" name="gender" [formControl]="gender" [(ngModel)]="form.gender" value="0" checked>
+                                        <b>Nam</b>
+                                    </label>
+                
+                                    <label>
+                                        <input type="radio" name="gender" [formControl]="gender" [(ngModel)]="form.gender" value="1">
+                                        <b>Nữ</b>
+                                    </label>
+    
+                                    <label>
+                                        <input type="radio" name="gender" [formControl]="gender" [(ngModel)]="form.gender" value="2">
+                                        <b>Khác</b>
+                                    </label>
+                                </div>
+                        </div>
+        
+        
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Ngày Sinh</label>
+                            <input type="date" class="form-control"  name="birthday" [(ngModel)]="form.birthday" #birthday="ngModel">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Trạng Thái</label>
+                                <div class="gender">
+                                    <label>
+                                        <input type="radio"  name="status" [(ngModel)]="form.status" #status="ngModel" value="0" checked>
+                                        <b>Hiện</b>
+                                    </label>
+                
+                                    <label>
+                                        <input type="radio" name="status" [(ngModel)]="form.status" #status="ngModel" value="1">
+                                        <b>Ẩn</b>
+                                    </label>
+    
+                                </div>
+                        </div>
+
+                        <mat-form-field style="width: 350px" appearance="outline">
+                            <mat-label>Phòng Ban: </mat-label>
+                            <mat-select name="dep" [formControl]="depControl" [(ngModel)]="form.dep" required>
+                                <mat-option *ngFor="let i of listDepartment" [value]="i">
+                                    {{i.nameDepartment}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field><br>
+
+
+                        <mat-form-field style="width: 350px" appearance="outline">
+                            <mat-label>Cấp bậc: </mat-label>
+                            <mat-select name="level" [formControl]="levelControl" [(ngModel)]="form.level"   required>
+                                <mat-option *ngFor="let i of listLevel" [value]="i">
+                                    {{i.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field><br>
+
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> -->

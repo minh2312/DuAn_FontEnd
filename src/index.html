@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DuAn</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- Bootstrap -->
+ <!-- Google Font: Source Sans Pro -->
+ <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+ <!-- Font Awesome -->
+ <link rel="stylesheet" href="./assets/back_end/plugins/fontawesome-free/css/all.min.css">
+ <!-- Ionicons -->
+ <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+ <!-- Tempusdominus Bootstrap 4 -->
+ <link rel="stylesheet" href="./assets/back_end/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+ <!-- iCheck -->
+ <link rel="stylesheet" href="./assets/back_end/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+ <!-- JQVMap -->
+ <link rel="stylesheet" href="./assets/back_end/plugins/jqvmap/jqvmap.min.css">
+ <!-- Theme style -->
+ <link rel="stylesheet" href="./assets/back_end/dist/css/adminlte.min.css">
+ <!-- overlayScrollbars -->
+ <link rel="stylesheet" href="./assets/back_end/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+ <!-- Daterange picker -->
+ <link rel="stylesheet" href="./assets/back_end/plugins/daterangepicker/daterangepicker.css">
+ <!-- summernote -->
+ <link rel="stylesheet" href="./assets/back_end/plugins/summernote/summernote-bs4.min.css">
+  <style>
+    /* .sb2-2 .container .title{
+      padding: 45px 0px 45px 0px;
+    }
+
+    thead th {
+  cursor: pointer;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+thead th .active{
+  color: #000;
+}
+
+.container > .switch {
+  display: block;
+  margin: 12px auto;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 56px;
+  height: 20px;
+  padding: 3px;
+  background-color: white;
+  border-radius: 18px;
+  box-shadow: inset 0 -1px white, inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  background-image: -webkit-linear-gradient(top, #eeeeee, white 25px);
+  background-image: -moz-linear-gradient(top, #eeeeee, white 25px);
+  background-image: -o-linear-gradient(top, #eeeeee, white 25px);
+  background-image: linear-gradient(to bottom, #eeeeee, white 25px);
+}
+
+.switch-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.switch-label {
+  position: relative;
+  display: block;
+  height: inherit;
+  font-size: 10px;
+  text-transform: uppercase;
+  background: #eceeef;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.15);
+  -webkit-transition: 0.15s ease-out;
+  -moz-transition: 0.15s ease-out;
+  -o-transition: 0.15s ease-out;
+  transition: 0.15s ease-out;
+  -webkit-transition-property: opacity background;
+  -moz-transition-property: opacity background;
+  -o-transition-property: opacity background;
+  transition-property: opacity background;
+}
+.switch-label:before, .switch-label:after {
+  position: absolute;
+  top: 50%;
+  margin-top: -.5em;
+  line-height: 1;
+  -webkit-transition: inherit;
+  -moz-transition: inherit;
+  -o-transition: inherit;
+  transition: inherit;
+}
+.switch-label:before {
+  content: attr(data-off);
+  right: 11px;
+  color: #aaa;
+  text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+}
+.switch-label:after {
+  content: attr(data-on);
+  left: 11px;
+  color: white;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+}
+.switch-input:checked ~ .switch-label {
+  background: #47a8d8;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 3px rgba(0, 0, 0, 0.2);
+}
+.switch-input:checked ~ .switch-label:before {
+  opacity: 0;
+}
+.switch-input:checked ~ .switch-label:after {
+  opacity: 1;
+}
+
+.switch-handle {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  background-image: -webkit-linear-gradient(top, white 40%, #f0f0f0);
+  background-image: -moz-linear-gradient(top, white 40%, #f0f0f0);
+  background-image: -o-linear-gradient(top, white 40%, #f0f0f0);
+  background-image: linear-gradient(to bottom, white 40%, #f0f0f0);
+  -webkit-transition: left 0.15s ease-out;
+  -moz-transition: left 0.15s ease-out;
+  -o-transition: left 0.15s ease-out;
+  transition: left 0.15s ease-out;
+}
+.switch-handle:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -6px 0 0 -6px;
+  width: 12px;
+  height: 12px;
+  background: #f9f9f9;
+  border-radius: 6px;
+  box-shadow: inset 0 1px rgba(0, 0, 0, 0.02);
+  background-image: -webkit-linear-gradient(top, #eeeeee, white);
+  background-image: -moz-linear-gradient(top, #eeeeee, white);
+  background-image: -o-linear-gradient(top, #eeeeee, white);
+  background-image: linear-gradient(to bottom, #eeeeee, white);
+}
+.switch-input:checked ~ .switch-handle {
+  left: 40px;
+  box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.switch-green > .switch-input:checked ~ .switch-label {
+  background: #4fb845;
+}
+*/
+.gender label{
+  padding: 0px 10px 0px 10px;
+}
+.table tr{
+  text-align: center;
+}
+.imageEmp
+{
+  display: block; 
+  margin-left: auto; 
+  margin-right: auto;
+}
+
+.icon_chucNang a{
+  font-size: 20px;
+  cursor: pointer;
+  color: #000;
+}
+
+.icon_chucNang a i{
+  padding: 10px;
+}
+
+.err{
+  color: red;
+  font-size: 15px;
+}
+
+.file-upload {
+  position: relative;
+  overflow: hidden;
+  margin: 10px; }
+
+.file-upload {
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  width:150px;
+  height:50px;
+  max-width:150px;
+  text-align:center;
+  color: black;
+  font-size:1.2em;
+  background: transparent;
+  border: 2px solid #888;
+  padding: .85em 1em;
+  display:inline;
+  -ms-transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  background: rgb(199, 199, 199);
+}
+
+.file-upload input.file-input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  height:100%;
+}
+
+
+  </style>
+
+</head>
+<body class="mat-typography">
+  <app-root></app-root>
+
+
+
+<script src="./assets/back_end/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="./assets/back_end/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="./assets/back_end/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  //Change this to your no-image file
+let noimage =
+"https://ami-sni.com/wp-content/themes/consultix/images/no-image-found-360x250.png";
+
+function readURL(input) {
+if (input.files && input.files[0]) {
+  var reader = new FileReader();
+  reader.onload = function (e) {
+    $("#img-preview").attr("src", e.target.result);
+  };
+
+  reader.readAsDataURL(input.files[0]);
+} else {
+  $("#img-preview").attr("src", noimage);
+}
+}
+
+    function checkAll() {
+    var boxes = this.parentNode.querySelectorAll('input[type=checkbox]');
+    for (var i = 0; i < boxes.length; i++) {
+        boxes[i].checked = this.checked;
+    }
+}
+
+document.querySelector('[value="all"]').addEventListener('change', checkAll);
+
+
+
+</script>
+<!-- ChartJS -->
+<script src="./assets/back_end/plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="./assets/back_end/plugins/sparklines/sparkline.js"></script>
+<!-- JQVMap -->
+<script src="./assets/back_end/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="./assets/back_end/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="./assets/back_end/plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="./assets/back_end/plugins/moment/moment.min.js"></script>
+<script src="./assets/back_end/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="./assets/back_end/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="./assets/back_end/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="./assets/back_end/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="./assets/back_end/dist/js/adminlte.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="./assets/back_end/dist/js/demo.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="./assets/back_end/dist/js/pages/dashboard.js"></script>
+
+</body>
+</html>
+<script>
+  $(document).ready(function () {
+  $('#selectall').click(function () {
+      $('.selectedId').prop('checked', this.checked);
+  });
+
+  $('.selectedId').change(function () {
+      var check = ($('.selectedId').filter(":checked").length == $('.selectedId').length);
+      $('#selectall').prop("checked", check);
+  });
+});
+</script>

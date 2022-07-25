@@ -1,0 +1,219 @@
+<div class="content-header">
+    <div class="container">
+        <div class="title">
+            <h2>Quản Lý Nhân Viên</h2>
+        </div>
+        
+        <div class="boLocs" style="padding: 20px 0px 20p;">
+            <div class="row">
+                
+                <div class="col-md-3">
+                    <a routerLink="/admin/add-employee" routerLinkActive="router-link-active" class="btn btn-success">Add</a>
+                    <!-- <a routerLinkActive="router-link-active"  data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-success">Add</a> -->
+
+                        
+                </div>
+                <!-- <div class="col-md-5">
+                    <div class="row">
+                        <div class="col-md-6">
+                        </div>
+                        <div class="col-md-6">
+                            <span>Show</span>
+                            <select (change)="showItem($event)">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>25</option>
+                                <option>50</option>
+                            </select>
+                            <span style="padding-left: 5px;">Item</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <form action="">
+                        <div class="search-hero">
+                            <input class="form-control" type="text" name="search" [(ngModel)]="nameSearch"
+                                (ngModelChange)="Search()" placeholder=" Seach Phòng Ban">
+                        </div>
+                    </form>
+                </div> -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered table-hover ">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th >Ảnh </th>
+                            <th >Mã Nhân Viên <i class="fa fa-sort"></i></th>
+                            <th >Tên Nhân Viên<i class="fa fa-sort"></i></th>
+                            <th >Giới Tinh <i class="fa fa-sort"></i></th>
+                            <th >Phòng Ban <i class="fa fa-sort"></i></th>
+                            <th>Chức Năng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let i of data; let x = index ">
+                            <td>{{x+1}}</td>
+                            <td ><img class="imageEmp" src="http://localhost:9999/api/listEmployees/id={{i.id}}" width="100px" height="150px"></td>
+                            <td>{{i.codeEmployee}}</td>
+                            <td>{{i.nameEmployee}}</td>
+                            <td [ngSwitch]="i.gender">
+                                <div *ngSwitchCase="0">Nam</div>
+                                <div *ngSwitchCase="1">Nữ</div>
+                                <div *ngSwitchCase="2">Khác</div>
+                            </td>
+                            <td>{{i.dep.nameDepartment}}</td>
+                            <td class="icon_chucNang">
+                                <a ><i class="fas fa-trash"></i></a>
+                                <a (click)="formUpdateEmp(i.id)" routerLinkActive="router-link-active" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-edit"></i></a>
+                                <a><i class="fas fa-info"></i></a>
+                            </td>
+                        </tr>
+                      
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="container">
+        <div class="col-md-12">
+            <h2>Cập Nhập Nhân Viên</h2>
+            <form [formGroup]="info" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Ảnh Nhân Viên</label>
+                        <div>
+                            <img id="img-preview"  src=""
+                                width="250px" style="border-radius: 50%;width: 250px;height: 250px;" />
+                            <div>
+                                <input type="file" accept="image/*" onchange="readURL(this)"
+                                    (change)="uploadFile($event)" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Mã Nhân Viên</label>
+                            <input type="text" class="form-control" formControlName="codeEmployee"
+                                placeholder="Nhập Mã Nhân Viên">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tên Nhân Viên</label>
+                            <input type="text" class="form-control" formControlName="nameEmployee"
+                                placeholder="Nhâp Tên Nhân Viên">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email</label>
+                            <input type="text" class="form-control" formControlName="email" placeholder="Nhập Email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Số Điện Thoại</label>
+                            <input type="text" class="form-control" formControlName="phone"
+                                placeholder="Nhập Số Điện Thoại">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Địa Chỉ</label>
+                            <input type="text" class="form-control" formControlName="address"
+                                placeholder="Nhập Địa Chỉ">
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Dân Tộc</label>
+                            <input type="text" class="form-control" formControlName="ethnic" placeholder="Dân Tộc">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Giới Tính</label>
+                            <div class="gender">
+                                <label>
+                                    <input type="radio" formControlName="gender" value="0" checked>
+                                    <b>Nam</b>
+                                </label>
+
+                                <label>
+                                    <input type="radio" formControlName="gender" value="1">
+                                    <b>Nữ</b>
+                                </label>
+
+                                <label>
+                                    <input type="radio" formControlName="gender" value="2">
+                                    <b>Khác</b>
+                                </label>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Ngày Sinh</label>
+                            <input type="date" class="form-control" formControlName="birthday">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Trạng Thái</label>
+                            <div class="gender">
+                                <label>
+                                    <input type="radio" formControlName="status" value="0" checked>
+                                    <b>Hiện</b>
+                                </label>
+
+                                <label>
+                                    <input type="radio" formControlName="status" value="1">
+                                    <b>Ẩn</b>
+                                </label>
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Phòng Ban</label>
+                            <fieldset formGroupName="dep">
+                                <select formControlName="id" id="input" class="form-control">
+                                    <option value="null">-----Chọn Phòng Ban-----</option>
+                                    <option *ngFor="let i of listDepartment" [value]="i.id">{{i.nameDepartment}}
+                                    </option>
+                                </select>
+                            </fieldset>
+                        </div>
+
+                        <div class="form-group">
+                            <fieldset formGroupName="level">
+                                <label for="exampleInputEmail1">Cấp Bậc</label>
+                                <select formControlName="id" id="idLevel" class="form-control">
+                                    <option *ngFor="let i of listLevel" value="{{i.id}}">
+                                        {{i.name}}
+                                    </option>
+                                </select>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

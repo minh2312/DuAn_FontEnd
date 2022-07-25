@@ -1,0 +1,63 @@
+<div class="content-header">
+    <div class="container">
+        <div class="col-md-8">
+            <h2>Thêm Mới Phòng Ban</h2>
+            <form [formGroup]="info" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Mã Phòng Ban</label>
+                    <input type="text" class="form-control" formControlName="departmentCode">
+                    <div *ngIf="f.departmentCode.invalid && (f.departmentCode.dirty || f.departmentCode.touched)">
+                        <div *ngIf="f.departmentCode.errors">
+                            <div *ngIf="f.departmentCode.errors?.['required']">
+                                <small class="err">Mã Phòng Ban Không Được Để Rỗng</small>
+                            </div>
+                            <div *ngIf="f.departmentCode.errors?.['minlength']">
+                                <small class="err">Mã Phòng Ban Phải Ít Nhất 3 Ký Tự</small>
+                            </div>
+                            <div *ngIf="f.departmentCode.errors?.['maxlength']">
+                                <small class="err">Mã Phòng Ban Phải Đã Vượt Quá 10 Ký Tự</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Tên phòng Ban</label>
+                    <input type="text" class="form-control" formControlName="nameDepartment">
+                    <div *ngIf="f.nameDepartment.invalid && (f.nameDepartment.dirty || f.nameDepartment.touched)">
+                        <div *ngIf="f.nameDepartment.errors">
+                            <div *ngIf="f.nameDepartment.errors?.['required']">
+                                <small class="err">Mã Phòng Ban Không Được Để Rỗng</small>
+                            </div>
+                            <div *ngIf="f.nameDepartment.errors?.['minlength']">
+                                <small class="err">Mã Phòng Ban Phải Ít Nhất 3 Ký Tự</small>
+                            </div>
+                            <div *ngIf="f.nameDepartment.errors?.['maxlength']">
+                                <small class="err">Mã Phòng Ban Phải Đã Vượt Quá 150 Ký Tự</small>
+                            </div>
+                            <h4></h4>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" formControlName="status" id="" value="true" checked>
+                        <b>Hiện</b>
+                    </label>
+                </div>
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" formControlName="status" id="" value="false">
+                        <b>Ẩn</b>
+                    </label>
+                </div>
+
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

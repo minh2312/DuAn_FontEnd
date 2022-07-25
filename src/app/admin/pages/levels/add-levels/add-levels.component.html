@@ -1,0 +1,38 @@
+<div class="sb2-2">
+    <div class="container" style="padding-top: 50px;">
+        <div class="col-md-8">
+            <h2>Thêm Mới Leverl</h2>
+            <form [formGroup]="info" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Name</label>
+                  <input type="text" class="form-control"  formControlName="name" placeholder="Nhập Name">
+                 
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Lương Cơ Bản</label>
+                    <input type="number" class="form-control"  formControlName="basicSalary" >
+                   
+                  </div>
+
+
+                  <div class="radio">
+                    <label>
+                        <input type="radio" formControlName="status" id="" value="true" checked>
+                        <b>Hiện</b>
+                    </label>
+                </div>
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" formControlName="status" id="" value="false">
+                        <b>Ẩn</b>
+                    </label>
+                </div>
+
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+        </div>
+    </div>
+</div>
